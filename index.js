@@ -68,6 +68,10 @@
         $('#hash').val(PassHashCommon.generateHashWord($('#tag').val(), $('#key').val(), hashWordSize, requireDigit, requirePunctuation, requireMixedCase, restrictSpecial, restrictDigits));
       }
     });
+    $('#hash').on('click focus', function(e) {
+      this.setSelectionRange(0, this.value.length)
+    })
+    
     $('form').on('submit', function(e){
       e.preventDefault();
       

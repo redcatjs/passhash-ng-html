@@ -1,0 +1,91 @@
+html, body {
+  background-color: #fff;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: #000;
+  padding: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  width: 100px;
+  display: inline-block;
+}
+
+#tag, #key, #hash {
+  width: 150px;
+  display: inline-block;
+}
+
+#bump, #options, #cancel, #ok {
+  width: 120px;
+  text-align: center;
+}
+
+.row {
+  margin-bottom: 5px;
+  width: 400px;
+}
+
+.btn-right {
+  clear: both; 
+  padding-left: 100px;
+  padding-top: 10px;
+  width: 250px;
+}
+
+.settings.hidden {
+  display: none;
+}
+form {
+  padding: 15px 0px 0px 15px;
+  width: 400px;
+}
+.hidden {
+  display: none;
+}
+.form-group h2 {
+  font-size: 16px;
+}
+.form-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.form-group li {
+  padding:0;
+  margin:0; 
+}
+.form-group label {
+  width: auto;
+}
+.form-group.radio {
+  width: 100px;
+}
+.form-group.radio label {
+  display: inline-block;
+  width: 20px;
+  text-align: right;
+  padding: 0;
+  margin: 0 5px 2px 5px;
+}
+.form-group.radio input {
+  width: 15px;
+  display: inline-block;
+  padding: 0;
+  margin: 0 0 2px 0;
+}
+.actions input {
+  width: 100px;
+}
+.requirements, .restrictions {
+  width: 300px;
+}
+.col {
+  float: left;
+  width: 300px;
+}
+.col:last-child {
+  width: 100px;
+}

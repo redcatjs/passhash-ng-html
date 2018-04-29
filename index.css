@@ -35,7 +35,7 @@ label {
   width: 250px;
 }
 
-.settings.hidden {
+#settings.hidden {
   display: none;
 }
 form {

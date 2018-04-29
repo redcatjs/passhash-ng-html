@@ -1,6 +1,16 @@
 (function(){
   var settings;
-
+  
+  var inputs = document.querySelectorAll("input")
+  var hash = document.querySelector("#hash")
+  var key = document.querySelector("#key")
+  var tag = document.querySelector("#tag")
+  var unmask = document.querySelector("#unmask")
+  var unmasklabel = document.querySelector("#unmasklabel")
+  var settings = document.querySelector("#settings")
+  var options = document.querySelector("#options")
+  var bump = document.querySelector("#bump")
+  
   function generateConfig(e) {
     var cfg = '';
     var elements = document.querySelectorAll("input");
@@ -10,6 +20,20 @@
       }
     }
     return cfg;
+  }
+  
+  var notyf = new Notyf();
+  function copyTextToClipboard() {
+    if(!hash.value.length){
+      return
+    }
+    // hash.select();
+    if( document.execCommand('copy') ){
+      notyf.confirm('Password copied to clipboard');
+    }
+    else{
+      notyf.confirm('Unable to copy password to clipboard, press CTRL+C manually');
+    }
   }
 
   function main() {
@@ -27,36 +51,33 @@
       }
     }
     
-    $('#unmask').removeClass('hidden');
-    $('.unmasklabel').removeClass('hidden');
+    unmask.classList.remove('hidden');
+    unmasklabel.classList.remove('hidden');
     
-    $('#cancel').on('click', function(e){
-      window.close();
+    bump.addEventListener('click', function(e){
+      tag.value = PassHashCommon.bumpSiteTag(tag.value);
+      hashChange()
     });
-    $('#bump').on('click', function(e){
-      $('#tag').val(PassHashCommon.bumpSiteTag($('#tag').val())).trigger('change');
-    });
-    $('#unmask').on('click', function(e){
-      if($(this).prop('checked')) {
-        $('#key').attr('type', 'text');
+    unmask.addEventListener('click', function(e){
+      if(this.checked) {
+        key.setAttribute('type', 'text');
       }
       else {
-        $('#key').attr('type', 'password');
+        key.setAttribute('type', 'password');
       }
     });
-    $('#options').on('click', function(e){
-      if($('.settings').hasClass('hidden')){
-        $('.settings').removeClass('hidden');
-          $('.settings').show();
-          $('#options').val('Options <<');
+    options.addEventListener('click', function(e){
+      if(settings.classList.contains('hidden')){
+        settings.classList.remove('hidden');
+        options.value = 'Options <<';
       }
       else {
-        $('.settings').addClass('hidden');
-        $('.settings').hide();
-        $('#options').val('Options >>');
+        settings.classList.add('hidden');
+        options.value = 'Options >>';
       }
     });
-    $('input').on('input change', function(e) {
+    
+    function hashChange(e){
       var cfg = generateConfig();
       var hashWordSize = cfg.replace( /^\D+/g, '');
       var requireDigit = ( cfg.indexOf('d') != -1 ? true : false );
@@ -64,18 +85,26 @@
       var requireMixedCase = ( cfg.indexOf('m') != -1 ? true : false );
       var restrictSpecial = ( cfg.indexOf('r') != -1 ? true : false ); 
       var restrictDigits = ( cfg.indexOf('g') != -1 ? true : false );
-      if($('#key').val() && $('#tag').val()) {
-        $('#hash').val(PassHashCommon.generateHashWord($('#tag').val(), $('#key').val(), hashWordSize, requireDigit, requirePunctuation, requireMixedCase, restrictSpecial, restrictDigits));
+      var hashValue = ''
+      if(key.value && tag.value) {
+        hashValue = PassHashCommon.generateHashWord(tag.value, key.value, hashWordSize, requireDigit, requirePunctuation, requireMixedCase, restrictSpecial, restrictDigits);
       }
-    });
-    $('#hash').on('click focus', function(e) {
+      hash.value = hashValue
+    }
+    function selectAll(){
       this.setSelectionRange(0, this.value.length)
+    }
+    
+    Array.from(inputs).forEach(function(input){      
+      input.addEventListener('input', hashChange);
+      input.addEventListener('change', hashChange);
     })
     
-    $('form').on('submit', function(e){
-      e.preventDefault();
-      
-    });
+    hash.addEventListener('click', selectAll)
+    hash.addEventListener('focus', selectAll)
+    
+    hash.addEventListener('focus', copyTextToClipboard);
+    
   }
 
   main()

@@ -5,6 +5,7 @@
     <title>Password Hasher NG</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="index.css"/>
+    <link rel="stylesheet" href="notyf.min.css"/>
     <link rel="icon" type="image/png" href="logo_48.png" />
   </head>
 
@@ -27,14 +28,14 @@
           <input type="button" value="Bump" id="bump" name="bump" />      
         </div>
         <div class="row">
-          <input type="checkbox" id="unmask" class="hidden"><label class="checkboxlabel unmasklabel hidden" for="unmask">Unmask</label>
+          <input type="checkbox" id="unmask" class="hidden"><label id="unmasklabel" class="checkboxlabel hidden" for="unmask">Unmask</label>
         </div>
         <div class="row">
           <input type="button" value="Options >>" id="options" />
         </div>
       </div>
     </div>
-    <div class="row settings hidden">
+    <div id="settings" class="row hidden">
       <div class="col">
         <div class="form-group checkboxes requirements">
           <h2>Requirements</h2>
@@ -74,9 +75,9 @@
     </div>
   </form>
   
-  <script src="jquery-3.2.1.min.js"></script>
   <script src="passhash-sha1.js"></script>
   <script src="passhash-common.js"></script>
+  <script src="notyf.min.js"></script>
   <script src="index.js"></script>
 </body>
 

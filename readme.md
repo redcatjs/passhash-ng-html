@@ -1,6 +1,7 @@
 # Password Hasher NG Firefox extension
 html version based on [Password Hasher NG Firefox extension](https://github.com/phreaknerd/passhash-ng)
 
+See (demo)[https://redcatjs.github.io/passhash-ng-html/]
 
 ## What does it do?
 The hasher is generating a unique password for every site you visit. 

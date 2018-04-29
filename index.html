@@ -11,13 +11,28 @@
 <body>
   <form autocomplete="off">
     <div class="row">
-      <label for="tag">Sitetag</label><input type="text" id="tag" value="" autofocus /> <input type="button" value="Bump" id="bump" name="bump" />
-    </div>
-    <div class="row">
-      <label for="key">Masterkey</label><input type="password" id="key" value="" /> <input type="checkbox" id="unmask" class="hidden"><label class="checkboxlabel unmasklabel hidden" for="unmask">Unmask</label>
-    </div>
-    <div class="row">
-      <label for="hash">Hashword</label><input type="text" id="hash" value="" readonly/> <input type="button" value="Options >>" id="options" />
+      <div class="col">
+        <div class="row">
+          <label for="tag">Sitetag</label><input type="text" id="tag" value="" autofocus />
+        </div>
+        <div class="row">
+          <label for="key">Masterkey</label><input type="password" id="key" value="" />
+        </div>
+        <div class="row">
+          <label for="hash">Hashword</label><input type="text" id="hash" value="" readonly/>
+        </div>
+      </div>
+      <div class="col">
+        <div class="row">
+          <input type="button" value="Bump" id="bump" name="bump" />      
+        </div>
+        <div class="row">
+          <input type="checkbox" id="unmask" class="hidden"><label class="checkboxlabel unmasklabel hidden" for="unmask">Unmask</label>
+        </div>
+        <div class="row">
+          <input type="button" value="Options >>" id="options" />
+        </div>
+      </div>
     </div>
     <div class="row settings hidden">
       <div class="col">

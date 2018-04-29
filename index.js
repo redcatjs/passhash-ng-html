@@ -12,25 +12,24 @@
     return cfg;
   }
 
-  function main(settings) {
-    $('#tag').val(settings.tag);
-    setTimeout(function(){
-      $('#key').focus();
-    }, 500);  
-    var num = settings.cfg.replace( /^\D+/g, '');
+  function main() {
+    
+    var cfg = generateConfig()
+    
+    var num = cfg.replace( /^\D+/g, '');
     var elements = document.querySelectorAll("input");
     for(var i = 0, element; element = elements[i]; i++) { 
       if(typeof element.type !== 'undefined' && element.type == 'radio') {
         element.checked = element.value == num ? true : false;
       }
       else if (typeof element.type !== 'undefined' && element.type == 'checkbox' && element.id != 'unmask') {
-        element.checked =settings.cfg.indexOf(element.value) != -1 ? true : false;
+        element.checked = cfg.indexOf(element.value) != -1 ? true : false;
       }
     }
-    if(settings.unmasker == 1){
-      $('#unmask').removeClass('hidden');
-      $('.unmasklabel').removeClass('hidden');
-    }
+    
+    $('#unmask').removeClass('hidden');
+    $('.unmasklabel').removeClass('hidden');
+    
     $('#cancel').on('click', function(e){
       window.close();
     });
@@ -75,11 +74,6 @@
     });
   }
 
-  var settings = {
-    cfg: generateConfig(),
-    tag: '',
-    unmasker: 1,
-  }
-  main(settings)
+  main()
 
 })()

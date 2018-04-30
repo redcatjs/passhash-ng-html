@@ -24,7 +24,7 @@ label {
 }
 #hint {
   position: absolute;
-  margin: 2px 0px 0px -25px;
+  margin: 2px 0px 0px 5px;
 	display: inline-block;
 	color: #666;
 	width: 13px;

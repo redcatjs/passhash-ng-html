@@ -112,7 +112,9 @@
     
     hash.addEventListener('focus', copyTextToClipboard);
     
-    key.type = 'password'
+    setTimeout(function(){
+      key.type = 'password'
+    },300)
     
   }
 

@@ -23,6 +23,7 @@
     return cfg;
   }
   
+  
   var notyf = new Notyf();
   function copyTextToClipboard() {
     if(!hash.value.length){
@@ -110,6 +111,8 @@
     hash.addEventListener('focus', selectAll)
     
     hash.addEventListener('focus', copyTextToClipboard);
+    
+    key.type = 'password'
     
   }
 

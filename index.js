@@ -2,7 +2,7 @@
   var settings;
   
   var inputs = document.querySelectorAll("input")
-  var hash = document.querySelector("#hash")
+  var hash = document.getElementById("hash")
   var key = document.querySelector("#key")
   var tag = document.querySelector("#tag")
   var unmask = document.querySelector("#unmask")
@@ -10,6 +10,7 @@
   var settings = document.querySelector("#settings")
   var options = document.querySelector("#options")
   var bump = document.querySelector("#bump")
+  var hint = document.querySelector("#hint")
   
   function generateConfig(e) {
     var cfg = '';
@@ -86,9 +87,14 @@
       var restrictSpecial = ( cfg.indexOf('r') != -1 ? true : false ); 
       var restrictDigits = ( cfg.indexOf('g') != -1 ? true : false );
       var hashValue = ''
+      var hintValue = '$$'
       if(key.value && tag.value) {
         hashValue = PassHashCommon.generateHashWord(tag.value, key.value, hashWordSize, requireDigit, requirePunctuation, requireMixedCase, restrictSpecial, restrictDigits);
       }
+      if(key.value) {
+        hintValue = PassHashCommon.generateHashWord(key.value, key.value, 2, true, false, true, false, false);
+      }
+      hint.innerText = hintValue
       hash.value = hashValue
     }
     function selectAll(){

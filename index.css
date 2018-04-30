@@ -22,6 +22,14 @@ label {
   width: 120px;
   text-align: center;
 }
+#hint {
+  position: absolute;
+  margin: 2px 0px 0px -25px;
+	display: inline-block;
+	color: #666;
+	width: 13px;
+	text-align: center;
+}
 
 .row {
   margin-bottom: 5px;

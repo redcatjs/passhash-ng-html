@@ -112,6 +112,9 @@
     
     hash.addEventListener('focus', copyTextToClipboard);
     
+    setTimeout(function(){
+      document.querySelector('.pwdbtn').remove()
+    },1000)
   }
 
   main()

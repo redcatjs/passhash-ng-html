@@ -1,4 +1,4 @@
-# Password Hasher NG Firefox extension
+# Password Hasher NG HTML
 html version based on [Password Hasher NG Firefox extension](https://github.com/phreaknerd/passhash-ng)
 
 See [demo](https://redcatjs.github.io/passhash-ng-html/)

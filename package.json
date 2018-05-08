@@ -1,21 +1,21 @@
 {
   "name": "passhash-ng-html",
   "version": "1.0.0",
-  "description": "html version based on [Password Hasher NG Firefox extension](https://github.com/phreaknerd/passhash-ng)",
+  "description": "html version based on [Password Hasher NG Firefox extension](https://github.com/redcatjs/passhash-ng)",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/phreaknerd/passhash-ng-html.git"
+    "url": "git+https://github.com/redcatjs/passhash-ng-html.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/phreaknerd/passhash-ng-html/issues"
+    "url": "https://github.com/redcatjs/passhash-ng-html/issues"
   },
-  "homepage": "https://github.com/phreaknerd/passhash-ng-html#readme",
+  "homepage": "https://github.com/redcatjs/passhash-ng-html#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",

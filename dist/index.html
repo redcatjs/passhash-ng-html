@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Password Hasher NG</title>
+    <meta charset="utf-8">
+    <style>
+#hash,#hint,#key,#tag,label{display:inline-block}body,html{background-color:#fff;font-family:sans-serif;font-size:14px;color:#000;margin:0;padding:0}label{width:100px}#hash,#key,#tag{width:150px}#bump,#cancel,#ok,#options{width:120px;text-align:center}#hint{position:absolute;margin:2px 0 0 5px;color:#666;width:13px;text-align:center}#settings.hidden,.hidden{display:none}.row{margin-bottom:5px;width:400px}.btn-right{clear:both;padding-left:100px;padding-top:10px;width:250px}form{padding:15px 0 0 15px;width:400px}.form-group h2{font-size:16px}.form-group ul{list-style:none;padding:0;margin:0}.form-group li{padding:0;margin:0}.form-group label{width:auto}.form-group.radio{width:100px}.form-group.radio label{display:inline-block;width:20px;text-align:right;padding:0;margin:0 5px 2px}.form-group.radio input{width:15px;display:inline-block;padding:0;margin:0 0 2px}.actions input{width:100px}.col,.requirements,.restrictions{width:300px}.col{float:left}.col:last-child{width:100px}
+</style>
+    <style>
+#hash,#hint,#key,#tag,label{display:inline-block}body,html{background-color:#fff;font-family:sans-serif;font-size:14px;color:#000;margin:0;padding:0}label{width:100px}#hash,#key,#tag{width:150px}#bump,#cancel,#ok,#options{width:120px;text-align:center}#hint{position:absolute;margin:2px 0 0 5px;color:#666;width:13px;text-align:center}#settings.hidden,.hidden{display:none}.row{margin-bottom:5px;width:400px}.btn-right{clear:both;padding-left:100px;padding-top:10px;width:250px}form{padding:15px 0 0 15px;width:400px}.form-group h2{font-size:16px}.form-group ul{list-style:none;padding:0;margin:0}.form-group li{padding:0;margin:0}.form-group label{width:auto}.form-group.radio{width:100px}.form-group.radio label{display:inline-block;width:20px;text-align:right;padding:0;margin:0 5px 2px}.form-group.radio input{width:15px;display:inline-block;padding:0;margin:0 0 2px}.actions input{width:100px}.col,.requirements,.restrictions{width:300px}.col{float:left}.col:last-child{width:100px}
+</style>
+    <link rel="icon" type="image/png" href="logo_48.png">
+  </head>
+
+<body>
+  <form autocomplete="off">
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <label for="tag">Sitetag</label><input type="text" id="tag" value="" autofocus>
+        </div>
+        <div class="row">
+          <label for="key">Masterkey</label><input type="password" id="key" value=""><div id="hint" class="hidden">$$</div>
+        </div>
+        <div class="row">
+          <label for="hash">Hashword</label><input type="text" id="hash" value="" readonly>
+        </div>
+      </div>
+      <div class="col">
+        <div class="row">
+          <input type="button" value="Bump" id="bump" name="bump">      
+        </div>
+        <div class="row">
+          <input type="checkbox" id="unmask" class="hidden"><label id="unmasklabel" class="checkboxlabel hidden" for="unmask">Unmask</label>
+        </div>
+        <div class="row">
+          <input type="button" value="Options >>" id="options">
+        </div>
+      </div>
+    </div>
+    <div id="settings" class="row hidden">
+      <div class="col">
+        <div class="form-group checkboxes requirements">
+          <h2>Requirements</h2>
+          <ul>
+            <li><input type="checkbox" id="d" checked="true" value="d"><label for="d">At least one digit</label></li>
+            <li><input type="checkbox" id="p" checked="true" value="p"><label for="p">At least one punctuation character</label></li>
+            <li><input type="checkbox" id="m" checked="true" value="m"><label for="m">Both upper- and lower-case letters</label></li>
+          </ul>
+        </div>
+        <div class="form-group checkboxes restrictions">
+          <h2>Restrictions</h2>
+          <ul>
+            <li><input type="checkbox" id="r" value="r"><label for="r">No special characters</label></li>
+            <li><input type="checkbox" id="g" value="g"><label for="g">Digits only</label></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group radio size">
+          <h2>Size</h2>
+          <ul>
+            <li><input type="radio" name="size" id="size4" value="4"><label for="size4">4</label>
+            <input type="radio" name="size" id="size16" value="16" checked="true"><label for="size16">16</label></li>
+            <li><input type="radio" name="size" id="size6" value="6"><label for="size6">6</label>
+            <input type="radio" name="size" id="size18" value="18"><label for="size18">18</label></li>
+            <li><input type="radio" name="size" id="size8" value="8"><label for="size8">8</label>
+            <input type="radio" name="size" id="size20" value="20"><label for="size20">20</label></li>
+            <li><input type="radio" name="size" id="size10" value="10"><label for="size10">10</label>
+            <input type="radio" name="size" id="size22" value="22"><label for="size22">22</label></li>
+            <li><input type="radio" name="size" id="size12" value="12"><label for="size12">12</label>
+            <input type="radio" name="size" id="size24" value="24"><label for="size24">24</label></li>
+            <li><input type="radio" name="size" id="size14" value="14"><label for="size14">14</label>
+            <input type="radio" name="size" id="size26" value="26"><label for="size26">26</label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+  <script>
+var hexcase=0,b64pad="",chrsz=8;function hex_sha1(r){return binb2hex(core_sha1(str2binb(r),r.length*chrsz))}function b64_sha1(r){return binb2b64(core_sha1(str2binb(r),r.length*chrsz))}function str_sha1(r){return binb2str(core_sha1(str2binb(r),r.length*chrsz))}function hex_hmac_sha1(r,n){return binb2hex(core_hmac_sha1(r,n))}function b64_hmac_sha1(r,n){return binb2b64(core_hmac_sha1(r,n))}function str_hmac_sha1(r,n){return binb2str(core_hmac_sha1(r,n))}function sha1_vm_test(){return"a9993e364706816aba3e25717850c26c9cd0d89d"==hex_sha1("abc")}function core_sha1(r,n){null==r[o=n>>5]?r[o]=128<<24-n%32:r[o]|=128<<24-n%32,r[15+(n+64>>9<<4)]=n;for(var a=Array(80),h=1732584193,t=-271733879,c=-1732584194,e=271733878,s=-1009589776,o=0;o<r.length;o+=16){for(var b=h,u=t,_=c,f=e,i=s,d=0;d<80;d++){a[d]=d<16?r[o+d]:rol(a[d-3]^a[d-8]^a[d-14]^a[d-16],1);var l=safe_add(safe_add(rol(h,5),sha1_ft(d,t,c,e)),safe_add(safe_add(s,a[d]),sha1_kt(d)));s=e,e=c,c=rol(t,30),t=h,h=l}h=safe_add(h,b),t=safe_add(t,u),c=safe_add(c,_),e=safe_add(e,f),s=safe_add(s,i)}return Array(h,t,c,e,s)}function sha1_ft(r,n,a,h){return r<20?n&a|~n&h:r<40?n^a^h:r<60?n&a|n&h|a&h:n^a^h}function sha1_kt(r){return r<20?1518500249:r<40?1859775393:r<60?-1894007588:-899497514}function core_hmac_sha1(r,n){var a=str2binb(r);16<a.length&&(a=core_sha1(a,r.length*chrsz));for(var h=Array(16),t=Array(16),c=0;c<16;c++){var e=null!=a[c]?a[c]:0;h[c]=909522486^e,t[c]=1549556828^e}var s=core_sha1(h.concat(str2binb(n)),512+n.length*chrsz);return core_sha1(t.concat(s),672)}function safe_add(r,n){var a=(65535&r)+(65535&n);return(r>>16)+(n>>16)+(a>>16)<<16|65535&a}function rol(r,n){return r<<n|r>>>32-n}function str2binb(r){for(var n=Array(),a=(1<<chrsz)-1,h=0;h<r.length*chrsz;h+=chrsz)null!=n[h>>5]?n[h>>5]|=(r.charCodeAt(h/chrsz)&a)<<32-chrsz-h%32:n[h>>5]=(r.charCodeAt(h/chrsz)&a)<<32-chrsz-h%32;return n}function binb2str(r){for(var n="",a=(1<<chrsz)-1,h=0;h<32*r.length;h+=chrsz)n+=String.fromCharCode(r[h>>5]>>>32-chrsz-h%32&a);return n}function binb2hex(r){for(var n=hexcase?"0123456789ABCDEF":"0123456789abcdef",a="",h=0;h<4*r.length;h++)a+=n.charAt(r[h>>2]>>8*(3-h%4)+4&15)+n.charAt(r[h>>2]>>8*(3-h%4)&15);return a}function binb2b64(r){for(var n="",a=0;a<4*r.length;a+=3)for(var h=(null!=r[a>>2]?(r[a>>2]>>8*(3-a%4)&255)<<16:0)|(null!=r[a+1>>2]?(r[a+1>>2]>>8*(3-(a+1)%4)&255)<<8:0)|(null!=r[a+2>>2]?r[a+2>>2]>>8*(3-(a+2)%4)&255:0),t=0;t<4;t++)8*a+6*t>32*r.length?n+=b64pad:n+="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charAt(h>>6*(3-t)&63);return n}
+</script>
+  <script>
+var PassHashCommon={getDomain:function(r){var t=r.split(".");return t.length<=1?null:2<t.length&&2==t[t.length-1].length&&"co"==t[t.length-2]?t[t.length-3]+"."+t[t.length-2]+"."+t[t.length-1]:t[t.length-2]+"."+t[t.length-1]},generateHashWord:function(r,t,e,a,n,s,o,i){for(var h=b64_hmac_sha1(t,r),c=0,g=0;g<h.length;g++)c+=h.charCodeAt(g);return i?h=PassHashCommon.convertToDigits(h,c,e):(a&&(h=PassHashCommon.injectSpecialCharacter(h,0,4,c,e,48,10)),n&&!o&&(h=PassHashCommon.injectSpecialCharacter(h,1,4,c,e,33,15)),s&&(h=PassHashCommon.injectSpecialCharacter(h,2,4,c,e,65,26),h=PassHashCommon.injectSpecialCharacter(h,3,4,c,e,97,26)),o&&(h=PassHashCommon.removeSpecialCharacters(h,c,e))),h.substr(0,e)},injectSpecialCharacter:function(r,t,e,a,n,s,o){for(var i=a%n,h=(i+t)%n,c=0;c<n-e;c++){var g=(i+e+c)%n,l=r.charCodeAt(g);if(s<=l&&l<s+o)return r}return(0<h?r.substring(0,h):"")+String.fromCharCode((a+r.charCodeAt(h))%o+s)+(h+1<r.length?r.substring(h+1,r.length):"")},removeSpecialCharacters:function(r,t,e){for(var a="",n=0;n<e;){var s=r.substring(n).search(/[^a-z0-9]/i);if(s<0)break;0<s&&(a+=r.substring(n,n+s)),a+=String.fromCharCode((t+n)%26+65),n+=s+1}return n<r.length&&(a+=r.substring(n)),a},convertToDigits:function(r,t,e){for(var a="",n=0;n<e;){var s=r.substring(n).search(/[^0-9]/i);if(s<0)break;0<s&&(a+=r.substring(n,n+s)),a+=String.fromCharCode((t+r.charCodeAt(n))%10+48),n+=s+1}return n<r.length&&(a+=r.substring(n)),a},bumpSiteTag:function(r){var t=r.replace(/^[ \t]*(.*)[ \t]*$/,"$1");if(t){var e=t.match(/^(.*):([0-9]+)?$/);null==e||e.length<3?t+=":1":t=e[1]+":"+(parseInt(e[2])+1)}return t},isTextNode:function(r){try{var t=r.localName.toUpperCase();if("TEXTAREA"==t||"TEXTBOX"==t||"INPUT"==t&&("text"==r.type||"password"==r.type))return!0}catch(r){}return!1}};
+</script>
+  <script>
+!function(){function e(n,t){var e=document.createElement("div");e.className="notyf__toast";var o=document.createElement("div");o.className="notyf__wrapper";var i=document.createElement("div");i.className="notyf__icon";var a=document.createElement("i");a.className=t;var r=document.createElement("div");r.className="notyf__message",r.innerHTML=n,i.appendChild(a),o.appendChild(i),o.appendChild(r),e.appendChild(o);var c=this;return setTimeout(function(){e.className+=" notyf--disappear",e.addEventListener(c.animationEnd,function(n){n.target==e&&c.container.removeChild(e)});var n=c.notifications.indexOf(e);c.notifications.splice(n,1)},c.options.delay),e}this.Notyf=function(){this.notifications=[];var n={delay:2e3,alertIcon:"notyf__icon--alert",confirmIcon:"notyf__icon--confirm"};arguments[0]&&"object"==typeof arguments[0]?this.options=function(n,t){for(property in t)t.hasOwnProperty(property)&&(n[property]=t[property]);return n}(n,arguments[0]):this.options=n;var t=document.createDocumentFragment(),e=document.createElement("div");e.className="notyf",t.appendChild(e),document.body.appendChild(t),this.container=e,this.animationEnd=function(){var n,t=document.createElement("fake"),e={transition:"animationend",OTransition:"oAnimationEnd",MozTransition:"animationend",WebkitTransition:"webkitAnimationEnd"};for(n in e)if(void 0!==t.style[n])return e[n]}()},this.Notyf.prototype.alert=function(n){var t=e.call(this,n,this.options.alertIcon);t.className+=" notyf--alert",this.container.appendChild(t),this.notifications.push(t)},this.Notyf.prototype.confirm=function(n){var t=e.call(this,n,this.options.confirmIcon);t.className+=" notyf--confirm",this.container.appendChild(t),this.notifications.push(t)}}(),"function"==typeof define&&define.amd?define("Notyf",function(){return Notyf}):"undefined"!=typeof module&&module.exports?module.exports=Notyf:window.Notyf=Notyf;
+</script>
+  <script>
+!function(){var d=document.querySelectorAll("input"),s=document.getElementById("hash"),l=document.querySelector("#key"),m=document.querySelector("#tag"),i=document.querySelector("#unmask"),r=document.querySelector("#unmasklabel"),v=document.querySelector("#settings"),p=document.querySelector("#options"),f=document.querySelector("#bump"),h=document.querySelector("#hint");function y(e){for(var t,n="",o=document.querySelectorAll("input"),c=0;t=o[c];c++)!0===t.checked&&"unmask"!=t.id&&(n+=t.value);return n}var e=new Notyf;function k(){s.value.length&&(document.execCommand("copy")?e.confirm("Password copied to clipboard"):e.confirm("Unable to copy password to clipboard, press CTRL+C manually"))}!function(){for(var e,t=y(),n=t.replace(/^\D+/g,""),o=document.querySelectorAll("input"),c=0;e=o[c];c++)void 0!==e.type&&"radio"==e.type?e.checked=e.value==n:void 0!==e.type&&"checkbox"==e.type&&"unmask"!=e.id&&(e.checked=-1!=t.indexOf(e.value));function a(e){var t=y(),n=t.replace(/^\D+/g,""),o=-1!=t.indexOf("d"),c=-1!=t.indexOf("p"),a=-1!=t.indexOf("m"),u=-1!=t.indexOf("r"),d=-1!=t.indexOf("g"),i="",r="$$";l.value&&m.value&&(i=PassHashCommon.generateHashWord(m.value,l.value,n,o,c,a,u,d)),l.value&&(r=PassHashCommon.generateHashWord(l.value,l.value,2,!0,!1,!0,!1,!1)),h.innerText=r,s.value=i}function u(){this.setSelectionRange(0,this.value.length)}i.classList.remove("hidden"),r.classList.remove("hidden"),f.addEventListener("click",function(e){m.value=PassHashCommon.bumpSiteTag(m.value),a()}),i.addEventListener("click",function(e){this.checked?l.setAttribute("type","text"):l.setAttribute("type","password")}),p.addEventListener("click",function(e){v.classList.contains("hidden")?(v.classList.remove("hidden"),p.value="Options <<"):(v.classList.add("hidden"),p.value="Options >>")}),Array.from(d).forEach(function(e){e.addEventListener("input",a),e.addEventListener("change",a)}),s.addEventListener("click",u),s.addEventListener("focus",u),s.addEventListener("focus",k),setTimeout(function(){document.querySelector(".pwdbtn").remove()},1e3)}()}();
+</script>
+</body>
+
+</html>

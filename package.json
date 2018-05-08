@@ -1,6 +1,6 @@
 {
   "name": "passhash-ng-html",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "html version based on [Password Hasher NG Firefox extension](https://github.com/redcatjs/passhash-ng)",
   "main": "index.html",
   "scripts": {
